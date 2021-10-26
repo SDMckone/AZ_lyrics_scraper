@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 # Author: Sean McKone
 # Simple lyrics scraper
-# Scrapes from azlyrics.com using Requests and BeautifulSoup4.
+# Scrapes from azlyrics.com using Requests and BeautifulSoup4
 
 def scraper(artist_name, song_name):
     try:
