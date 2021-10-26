@@ -1,13 +1,13 @@
-
 import requests
 from bs4 import BeautifulSoup
+
 
 # Author: Sean McKone
 # Simple lyrics scraper
 # Scrapes from azlyrics.com using Requests and BeautifulSoup4
 
 def scraper(artist_name, song_name):
-    try: 
+    try:
         artist_name = artist_name.replace(" ", "").lower()
         song_name = song_name.replace(" ", "").lower()
 
@@ -15,7 +15,7 @@ def scraper(artist_name, song_name):
         page = requests.get(URL)
 
         soup = BeautifulSoup(page.content, 'html.parser')
-        results = soup.find('div', class_ = 'col-xs-12 col-lg-8 text-center')
+        results = soup.find('div', class_='col-xs-12 col-lg-8 text-center')
         nextResults = results.find_all("div")
         songLyrics = nextResults[5].get_text().strip()
 
@@ -23,7 +23,7 @@ def scraper(artist_name, song_name):
 
     except AttributeError:
         return 'Not a valid artist/song combination.'
-    
+
 
 def main():
     print('Enter artist name and song title to get lyrics, enter "q" to quit.')
@@ -35,7 +35,7 @@ def main():
         song_name = input("Enter song name: ")
         if song_name == 'q':
             break
-        
+
         print('-' * 50)
         print(scraper(artist_name, song_name))
         print('-' * 50)
